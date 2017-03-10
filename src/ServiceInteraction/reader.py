@@ -1,4 +1,4 @@
-from PyQt5.QtCore import QThread
+from PyQt5.QtCore import QThread, pyqtSlot
 import irsdk
 
 import src.ServiceInteraction.data as data
@@ -116,6 +116,17 @@ class DataReader(QThread):
         session.time_remain = ir['SessionTimeRemain']
         session.laps_remain = ir['SessionLapsRemain']
 
+        if ir['SessionInfo']:
+            sessions = ir['SessionInfo']['Sessions']
+            if not sessions:
+                return
+
+            for session_info in sessions:
+                if session_info['SessionNum'] != current_session:
+                    continue
+
+
+
     def update_car_status(self, ir):
         laps = ir['CarIdxLap']
         laps_complete = ir['CarIdxLapCompleted']
@@ -152,6 +163,7 @@ class DataReader(QThread):
 
         pass
 
+    @pyqtSlot()
     def run(self):
         ir = irsdk.IRSDK()
         while not self.stop:
