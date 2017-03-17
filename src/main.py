@@ -1,12 +1,8 @@
-from PyQt5.QtGui import QGuiApplication
-from PyQt5.QtQml import QQmlEngine, QQmlComponent
-
-from src.ServiceInteraction.reader import DataReader
+from PyQt5.QtWidgets import QApplication
+from src.gui.mainwindow import MainWindow
 
 if __name__ == '__main__':
-    app = QGuiApplication([])
-    engine = QQmlEngine()
-    engine.rootContext().setContextProperty("dataReader", DataReader())
-    component = QQmlComponent(engine, 'qml/main.qml')
-    rootWindow = component.create(engine.rootContext())
+    app = QApplication([])
+    main_window = MainWindow()
+    main_window.show()
     app.exec()

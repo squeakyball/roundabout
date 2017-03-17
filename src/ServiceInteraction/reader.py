@@ -85,7 +85,7 @@ class DataReader(QThread):
                     driver.team_id = car_info['TeamID']
                     data.weekend_info.drivers[user_id] = driver
 
-                if car_info['CarIdx'] not in data.weekend_info.cars:
+                if data.weekend_info.cars[car_info['CarIdx']] is None:
                     car = data.Car()
                     car.is_pace_car = car_info['CarIsPaceCar']
                     car.is_spectator = car_info['IsSpectator']
@@ -124,6 +124,7 @@ class DataReader(QThread):
             for session_info in sessions:
                 if session_info['SessionNum'] != current_session:
                     continue
+                    #TODO it seems that this part isn't finished
 
 
 
@@ -163,7 +164,6 @@ class DataReader(QThread):
 
         pass
 
-    @pyqtSlot()
     def run(self):
         ir = irsdk.IRSDK()
         while not self.stop:
