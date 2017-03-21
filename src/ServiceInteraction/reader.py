@@ -166,6 +166,13 @@ class DataReader(QThread):
 
     def run(self):
         ir = irsdk.IRSDK()
+
+        #debug
+        self.check_service(ir)
+        self.update_data(ir)
+        return
+        #debug
+
         while not self.stop:
             self.check_service(ir)
             if self.state.connected:

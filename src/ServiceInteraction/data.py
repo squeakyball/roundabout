@@ -66,6 +66,8 @@ class Session:
 
 
 class WeekendInfo:
+    car_max = 64
+
     def __init__(self):
         self.display_units = None
 

@@ -1,29 +1,25 @@
 import QtQuick.Controls 1.4
 import QtQuick 2.0
 
+Rectangle {
+    color: "green"
+    width: 200
+    height: 200
+
 ListView {
+    x: 10
+    y: 10
+    z: 1
     width: 180
     height: 200
 
-    model: ListModel {
-        ListElement {
-            name: "Driver #1"
-        }
-        ListElement {
-            name: "Driver #2"
-        }
-        ListElement {
-            name: "Driver #3"
-        }
-        ListElement {
-            name: "Driver #4"
-        }
-        ListElement {
-            name: "Driver #5"
-        }
-    }
+    //color: "red"
+    //opacity: 0.5
+
+    model: dataModel
 
     delegate: Text {
-        text: name
+        text: model.name + ' - ' + model.position
     }
+}
 }

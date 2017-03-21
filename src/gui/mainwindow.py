@@ -1,11 +1,11 @@
 import PyQt5.uic
-from PyQt5.QtCore import QUrl
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtQml import QQmlEngine
 from PyQt5.QtWidgets import QMainWindow
 
+from src.ServiceInteraction.data import weekend_info
+from src.ServiceInteraction.positionmodel import PositionModel
 from src.ServiceInteraction.reader import DataReader
-from src.movableqmlwindow import MovableQmlWindow
+from src.overlaywidget import OverlayWidget
 
 ui_class = PyQt5.uic.loadUiType('gui/mainwindow.ui')
 
@@ -22,15 +22,15 @@ class MainWindow(QMainWindow):
         self.ui.actionStart.triggered.connect(self.startReader)
         self.ui.actionStop.triggered.connect(self.stopReader)
 
-        self.engine = QQmlEngine()
-        self.mw = MovableQmlWindow()
+        self.mw = OverlayWidget()
 
     @pyqtSlot()
     def startReader(self):
-        #self.data_reader.start()
-        self.mw.setSource(QUrl.fromLocalFile('qml/EntryList.qml'))
+        self.data_reader.run()
+        self.mw.setup(PositionModel(weekend_info), 'qml/EntryList.qml')
         self.mw.show()
 
+    @pyqtSlot()
     def stopReader(self):
         pass
 
