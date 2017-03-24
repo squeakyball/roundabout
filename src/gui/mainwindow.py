@@ -12,7 +12,7 @@ ui_class = PyQt5.uic.loadUiType('gui/mainwindow.ui')
 
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
-        super(MainWindow, self).__init__(parent)
+        super().__init__(parent)
 
         self.ui = ui_class[0]()
         self.ui.setupUi(self)

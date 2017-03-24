@@ -4,8 +4,8 @@ from PyQt5.QtQuick import QQuickView
 
 class MovableQmlWindow(QQuickView):
     def __init__(self):
-        super(MovableQmlWindow, self).__init__(None)
-        self.setFlags(Qt.FramelessWindowHint | Qt.NoDropShadowWindowHint)
+        super().__init__(None)
+        # self.setFlags(Qt.FramelessWindowHint | Qt.NoDropShadowWindowHint)
         self.startPos = self.position()
 
     def mousePressEvent(self, event):

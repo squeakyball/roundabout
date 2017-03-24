@@ -1,24 +1,26 @@
 import QtQuick.Controls 1.4
 import QtQuick 2.0
 
+Item {
+    width: 150
+    height: 450
+
 Rectangle {
-    color: "green"
-    width: 200
-    height: 200
+    anchors.fill: parent
+
+    color: "yellow"
+    opacity: 0.4
+}
 
 ListView {
-    x: 10
-    y: 10
-    z: 1
-    width: 180
-    height: 200
+    anchors.fill: parent
 
-    //color: "red"
-    //opacity: 0.5
+    interactive: false
 
     model: dataModel
 
     delegate: Text {
+        font.pointSize: 12
         text: model.name + ' - ' + model.position
     }
 }
